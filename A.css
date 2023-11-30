@@ -1,0 +1,170 @@
+@import 'https://unpkg.com/open-props' layer(design.system);
+
+@import 'https://unpkg.com/open-props/normalize.light.min.css'
+  layer(base.normalize);
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200..900&family=Pacifico&display=swap');
+
+@layer override.normalize {
+  :root {
+    font-family: 'Inter', sans-serif;
+    --op-link-font-size: 0.875rem;
+    --link: oklch(0.55 0.01 252);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 0;
+  }
+
+  a {
+    text-decoration-color: currentColor;
+    text-decoration-thickness: var(--border-size-1);
+  }
+
+  :not(:active):focus-visible {
+    outline-offset: unset;
+  }
+
+  a[href]:visited {
+    color: var(--link);
+  }
+}
+
+@layer demo {
+  body {
+    --size: 320px;
+    --gap: var(--size-3);
+  }
+
+  section {
+    display: grid;
+    align-content: start;
+    padding-block: var(--size-6);
+    gap: var(--gap);
+    min-block-size: 100dvh;
+    background-color: var(--surface-1);
+    color: var(--text-1);
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+    padding-block: var(--gap);
+
+    .logo {
+      padding: 0;
+      font-family: Pacifico;
+      font-size: var(--font-size-7);
+      padding-block-end: var(--size-3);
+      background: linear-gradient(121deg, #535759 7.31%, #212529 105.11%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .form-container {
+    display: grid;
+    justify-items: center;
+    inline-size: 100%;
+    gap: var(--gap);
+
+    & h1 {
+      font-size: var(--font-size-4);
+      font-weight: var(--font-weight-3);
+      letter-spacing: var(--font-letterspacing-0);
+      color: var(--text-2);
+    }
+
+    :is(input, button) {
+      block-size: var(--size-7);
+    }
+
+    & form {
+      display: grid;
+      gap: var(--gap);
+      inline-size: min(100%, var(--size));
+
+      background-color: var(--surface-2);
+      border: var(--border-size-1) solid var(--surface-3);
+      padding: var(--size-3);
+      border-radius: var(--radius-2);
+
+      > div {
+        display: grid;
+        gap: calc(var(--gap) / 2);
+
+        & input {
+          border: var(--border-size-1) solid var(--surface-3);
+          background-color: var(--surface-1);
+          font-size: var(--op-link-font-size);
+          caret-color: var(--text-1);
+
+          &:focus-within {
+            outline: var(--border-size-1) solid var(--stone-4);
+          }
+        }
+      }
+
+      & label {
+        font-size: var(--op-link-font-size);
+      }
+    }
+
+    .pass-controller {
+      display: flex;
+      justify-content: space-between;
+
+      & a {
+        text-decoration: none;
+        font-size: var(--font-size-0);
+      }
+    }
+
+    .login {
+      border: var(--border-size-1) solid var(--surface-3);
+      font-size: var(--op-link-font-size);
+      inline-size: min(100%, var(--size));
+      padding: var(--size-3);
+    }
+
+    .btn-custom {
+      border-radius: var(--radius-2);
+      border: 0;
+      color: white;
+      font-size: var(--op-link-font-size);
+      font-weight: var(--font-weight-5);
+      line-height: var(--font-lineheight-00);
+
+      -webkit-user-select: none;
+      user-select: none;
+      background: linear-gradient(
+          0deg,
+          hsl(210, 12%, 13%) 0%,
+          hsl(206 6% 24% / 0) 100%
+        ),
+        hsl(206 6% 24%);
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #55595b;
+      }
+    }
+  }
+
+  footer {
+    padding-block: calc(var(--gap) * 2);
+
+    > ul {
+      display: flex;
+      justify-content: center;
+      font-size: var(--font-size-0);
+      gap: var(--gap);
+      flex-wrap: wrap;
+    }
+  }
+}
